@@ -123,7 +123,8 @@ export default function Signup() {
           block
           size="lg"
           type="submit"
-          variant="success"
+          // variant="success"
+          style={{ backgroundColor: '#07fe2c', color: 'white' }}
           isLoading={isLoading}
           disabled={!validateForm()}
         >
