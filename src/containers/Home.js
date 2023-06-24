@@ -7,6 +7,7 @@ import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
+
 export default function Home() {
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -57,7 +58,7 @@ export default function Home() {
     );
   }
   
- function renderLander() {
+  function renderLander() {
     return (
       <div className="lander">
         <h1>Scratch</h1>
@@ -73,6 +74,8 @@ export default function Home() {
       </div>
     );
   }
+  
+
   function renderNotes() {
     return (
       <div className="notes">
