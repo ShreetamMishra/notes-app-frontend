@@ -8,7 +8,7 @@ import { Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
-
+import config from "./config";
 
 
 function App() {
