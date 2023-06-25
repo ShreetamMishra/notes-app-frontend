@@ -7,8 +7,8 @@ import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import { onError } from "./libs/errorLib";
-import config from "./config";
+import { onError } from "./libs/errorLib";
+
 
 
 function App() {
@@ -33,20 +33,17 @@ function App() {
   //   setIsAuthenticating(false);
   // }
   async function onLoad() {
+    loadFacebookSDK();
     try {
-      await Auth.currentAuthenticatedUser();
+      await Auth.currentSession();
       userHasAuthenticated(true);
     } catch (e) {
-      if (e !== "not authenticated") {
-        alert(e);
+      if (e !== "No current user") {
+        onError(e);
       }
     }
     setIsAuthenticating(false);
   }
-
-  useEffect(() => {
-    loadFacebookSDK();
-  }, []);
 
   function loadFacebookSDK() {
     window.fbAsyncInit = function () {
