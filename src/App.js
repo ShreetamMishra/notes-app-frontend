@@ -8,7 +8,7 @@ import { Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { onError } from "./libs/errorLib";
-import ErrorBoundary from "./components/ErrorBoundary";
+// import ErrorBoundary from "./components/ErrorBoundary";
 
 
 function App() {
@@ -104,11 +104,11 @@ function App() {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          <ErrorBoundary>
+          
             <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
               <Routes />
             </AppContext.Provider>
-          </ErrorBoundary>
+          
         </div>
       )
     );
