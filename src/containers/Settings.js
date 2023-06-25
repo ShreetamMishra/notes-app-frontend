@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Settings.css";
+import { LinkContainer } from "react-router-bootstrap";
+import LoaderButton from "../components/LoaderButton";
 
 export default function Settings() {
   const [billingDetails, setBillingDetails] = useState({
@@ -23,6 +25,19 @@ export default function Settings() {
   };
 
   return (
+    <div>
+    <div className="Settings">
+      <LinkContainer to="/settings/email">
+        <LoaderButton block bsSize="large">
+          Change Email
+        </LoaderButton>
+      </LinkContainer>
+      <LinkContainer to="/settings/password">
+        <LoaderButton block bsSize="large">
+          Change Password
+        </LoaderButton>
+      </LinkContainer>
+    </div>
     <div className="settings-container">
       <h2>Billing Information</h2>
       <form className="billing-form" onSubmit={handleSubmit}>
@@ -84,5 +99,6 @@ export default function Settings() {
         <button type="submit">Submit</button>
       </form>
     </div>
+   </div>
   );
 }
