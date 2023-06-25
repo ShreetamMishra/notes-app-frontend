@@ -21,17 +21,17 @@ function App() {
     onLoad();
   }, []);
   
-  // async function onLoad() {
-  //   try {
-  //     await Auth.currentSession();
-  //     userHasAuthenticated(true);
-  //   } catch (e) {
-  //     if (e !== "No current user") {
-  //       onError(e);
-  //     }
-  //   }
-  //   setIsAuthenticating(false);
-  // }
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== "No current user") {
+        onError(e);
+      }
+    }
+    setIsAuthenticating(false);
+  }
   async function onLoad() {
     loadFacebookSDK();
     try {
