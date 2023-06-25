@@ -38,8 +38,8 @@ export default function Login() {
     }
   }
   handleFbLogin = () => {
-    this.props.userHasAuthenticated(true);
-    };
+this.props.userHasAuthenticated(true);
+};
 
   return (
     <div className="Login">

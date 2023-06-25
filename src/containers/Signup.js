@@ -49,9 +49,8 @@ export default function Signup() {
       setIsLoading(false);
     }
   }
-  handleFbLogin = () => {
-    this.props.userHasAuthenticated(true);
-    };
+ 
+
   async function handleConfirmationSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
@@ -65,7 +64,9 @@ export default function Signup() {
       setIsLoading(false);
     }
   }
-  
+  handleFbLogin = () => {
+    this.props.userHasAuthenticated(true);
+    };
 
   function renderConfirmationForm() {
     return (
