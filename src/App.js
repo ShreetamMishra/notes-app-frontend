@@ -17,9 +17,10 @@ function App() {
   const history = useHistory();
   
 
- useEffect(() => {
-    onLoad();
-  }, []);
+useEffect(() => {
+  onLoad();
+}, [onLoad]);
+
   
   // async function onLoad() {
   //   try {
