@@ -13,6 +13,10 @@ const dev = {
       APP_CLIENT_ID: "58jum49uluba6lb7l0m9gus95b",
       IDENTITY_POOL_ID: "ap-south-1:e7d1571d-e73a-42ee-a71c-0eae725c3164",
   },
+  social: {
+    FB: "651928649757855"
+    }
+    
 };
 
 const prod = {
@@ -30,6 +34,10 @@ const prod = {
       APP_CLIENT_ID: "16jriehc5c1tl3fvd0qp2p8pjr",
       IDENTITY_POOL_ID: "ap-south-1:97bdc856-9f43-468b-a243-cede6c5dceb0",
   },
+  social: {
+    FB: "651928649757855"
+    }
+    
 };
 
 const config = {

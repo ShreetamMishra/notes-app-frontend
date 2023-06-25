@@ -8,6 +8,8 @@ import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import
+FacebookButton from "../components/FacebookButton";
 
 export default function Login() {
   const history = useHistory();
@@ -35,6 +37,9 @@ export default function Login() {
       setIsLoading(false);
     }
   }
+  handleFbLogin = () => {
+    this.props.userHasAuthenticated(true);
+    };
 
   return (
     <div className="Login">
@@ -56,6 +61,7 @@ export default function Login() {
             onChange={handleFieldChange}
           />
         </Form.Group>
+        <FacebookButton onLogin={this.handleFbLogin}/><hr />
         <Link to="/login/reset">Forgot password?</Link>
         <LoaderButton
           block
@@ -66,6 +72,7 @@ export default function Login() {
         >
           Login
         </LoaderButton>
+        
       </Form>
     </div>
   );
