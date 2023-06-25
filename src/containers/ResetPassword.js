@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
-import { HelpBlock,FormGroup,Glyphicon,FormControl,ControlLabel} from "react-bootstrap";
+import {
+  HelpBlock,
+  FormGroup,
+  Glyphicon,
+  FormControl,
+  FormLabel,
+} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
@@ -12,7 +18,7 @@ export default function ResetPassword() {
     code: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [codeSent, setCodeSent] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
@@ -65,7 +71,7 @@ export default function ResetPassword() {
     return (
       <form onSubmit={handleSendCodeClick}>
         <FormGroup bsSize="large" controlId="email">
-          <ControlLabel>Email</ControlLabel>
+          <FormLabel>Email</FormLabel>
           <FormControl
             autoFocus
             type="email"
@@ -90,7 +96,7 @@ export default function ResetPassword() {
     return (
       <form onSubmit={handleConfirmClick}>
         <FormGroup bsSize="large" controlId="code">
-          <ControlLabel>Confirmation Code</ControlLabel>
+          <FormLabel>Confirmation Code</FormLabel>
           <FormControl
             autoFocus
             type="tel"
@@ -103,7 +109,7 @@ export default function ResetPassword() {
         </FormGroup>
         <hr />
         <FormGroup bsSize="large" controlId="password">
-          <ControlLabel>New Password</ControlLabel>
+          <FormLabel>New Password</FormLabel>
           <FormControl
             type="password"
             value={fields.password}
@@ -111,7 +117,7 @@ export default function ResetPassword() {
           />
         </FormGroup>
         <FormGroup bsSize="large" controlId="confirmPassword">
-          <ControlLabel>Confirm Password</ControlLabel>
+          <FormLabel>Confirm Password</FormLabel>
           <FormControl
             type="password"
             value={fields.confirmPassword}
