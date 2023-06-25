@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
-import {
-  HelpBlock,
-  FormGroup,
-  Glyphicon,
-  FormControl,
-  FormLabel,
-} from "react-bootstrap";
+import { Form, Button, FormGroup, FormLabel, FormControl } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
@@ -55,11 +49,7 @@ export default function ResetPassword() {
     setIsConfirming(true);
 
     try {
-      await Auth.forgotPasswordSubmit(
-        fields.email,
-        fields.code,
-        fields.password
-      );
+      await Auth.forgotPasswordSubmit(fields.email, fields.code, fields.password);
       setConfirmed(true);
     } catch (error) {
       onError(error);
@@ -69,8 +59,8 @@ export default function ResetPassword() {
 
   function renderRequestCodeForm() {
     return (
-      <form onSubmit={handleSendCodeClick}>
-        <FormGroup bsSize="large" controlId="email">
+      <Form onSubmit={handleSendCodeClick}>
+        <FormGroup controlId="email">
           <FormLabel>Email</FormLabel>
           <FormControl
             autoFocus
@@ -82,20 +72,19 @@ export default function ResetPassword() {
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
           isLoading={isSendingCode}
           disabled={!validateCodeForm()}
         >
           Send Confirmation
         </LoaderButton>
-      </form>
+      </Form>
     );
   }
 
   function renderConfirmationForm() {
     return (
-      <form onSubmit={handleConfirmClick}>
-        <FormGroup bsSize="large" controlId="code">
+      <Form onSubmit={handleConfirmClick}>
+        <FormGroup controlId="code">
           <FormLabel>Confirmation Code</FormLabel>
           <FormControl
             autoFocus
@@ -103,12 +92,12 @@ export default function ResetPassword() {
             value={fields.code}
             onChange={handleFieldChange}
           />
-          <HelpBlock>
+          <Form.Text>
             Please check your email ({fields.email}) for the confirmation code.
-          </HelpBlock>
+          </Form.Text>
         </FormGroup>
         <hr />
-        <FormGroup bsSize="large" controlId="password">
+        <FormGroup controlId="password">
           <FormLabel>New Password</FormLabel>
           <FormControl
             type="password"
@@ -116,7 +105,7 @@ export default function ResetPassword() {
             onChange={handleFieldChange}
           />
         </FormGroup>
-        <FormGroup bsSize="large" controlId="confirmPassword">
+        <FormGroup controlId="confirmPassword">
           <FormLabel>Confirm Password</FormLabel>
           <FormControl
             type="password"
@@ -127,25 +116,22 @@ export default function ResetPassword() {
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
           isLoading={isConfirming}
           disabled={!validateResetForm()}
         >
           Confirm
         </LoaderButton>
-      </form>
+      </Form>
     );
   }
 
   function renderSuccessMessage() {
     return (
       <div className="success">
-        <Glyphicon glyph="ok" />
+        <i className="bi bi-check-circle"></i>
         <p>Your password has been reset.</p>
         <p>
-          <Link to="/login">
-            Click here to login with your new credentials.
-          </Link>
+          <Link to="/login">Click here to login with your new credentials.</Link>
         </p>
       </div>
     );
