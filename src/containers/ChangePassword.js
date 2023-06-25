@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
@@ -43,42 +43,42 @@ export default function ChangePassword() {
 
   return (
     <div className="ChangePassword">
-      <form onSubmit={handleChangeClick}>
-        <FormGroup bsSize="large" controlId="oldPassword">
-          <ControlLabel>Old Password</ControlLabel>
-          <FormControl
+      <Form onSubmit={handleChangeClick}>
+        <Form.Group controlId="oldPassword">
+          <Form.Label>Old Password</Form.Label>
+          <Form.Control
             type="password"
             onChange={handleFieldChange}
             value={fields.oldPassword}
           />
-        </FormGroup>
+        </Form.Group>
         <hr />
-        <FormGroup bsSize="large" controlId="password">
-          <ControlLabel>New Password</ControlLabel>
-          <FormControl
+        <Form.Group controlId="password">
+          <Form.Label>New Password</Form.Label>
+          <Form.Control
             type="password"
             onChange={handleFieldChange}
             value={fields.password}
           />
-        </FormGroup>
-        <FormGroup bsSize="large" controlId="confirmPassword">
-          <ControlLabel>Confirm Password</ControlLabel>
-          <FormControl
+        </Form.Group>
+        <Form.Group controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
             type="password"
             onChange={handleFieldChange}
             value={fields.confirmPassword}
           />
-        </FormGroup>
+        </Form.Group>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           disabled={!validateForm()}
           isLoading={isChanging}
         >
           Change Password
         </LoaderButton>
-      </form>
+      </Form>
     </div>
   );
 }
