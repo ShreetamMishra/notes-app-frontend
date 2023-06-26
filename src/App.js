@@ -17,24 +17,11 @@ function App() {
   const history = useHistory();
   
 
-useEffect(() => {
-  onLoad();
-}, [onLoad]);
-
+  useEffect(() => {
+    onLoad();
+  }, []);
   
-  // async function onLoad() {
-  //   try {
-  //     await Auth.currentSession();
-  //     userHasAuthenticated(true);
-  //   } catch (e) {
-  //     if (e !== "No current user") {
-  //       onError(e);
-  //     }
-  //   }
-  //   setIsAuthenticating(false);
-  // }
   async function onLoad() {
-    loadFacebookSDK();
     try {
       await Auth.currentSession();
       userHasAuthenticated(true);
@@ -45,6 +32,18 @@ useEffect(() => {
     }
     setIsAuthenticating(false);
   }
+  // async function onLoad() {
+  //   loadFacebookSDK();
+  //   try {
+  //     await Auth.currentSession();
+  //     userHasAuthenticated(true);
+  //   } catch (e) {
+  //     if (e !== "No current user") {
+  //       onError(e);
+  //     }
+  //   }
+  //   setIsAuthenticating(false);
+  // }
 
   function loadFacebookSDK() {
     window.fbAsyncInit = function () {
