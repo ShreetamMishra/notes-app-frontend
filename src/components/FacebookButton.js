@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import LoaderButton from "./LoaderButton";
+import "./FacebookButton.css";
 
 function waitForInit() {
   return new Promise((res, rej) => {
@@ -19,7 +20,7 @@ export default class FacebookButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
     };
   }
 
@@ -28,7 +29,7 @@ export default class FacebookButton extends Component {
     this.setState({ isLoading: false });
   }
 
-  statusChangeCallback = response => {
+  statusChangeCallback = (response) => {
     if (response.status === "connected") {
       this.handleResponse(response.authResponse);
     } else {
@@ -44,40 +45,34 @@ export default class FacebookButton extends Component {
     window.FB.login(this.checkLoginState, { scope: "public_profile,email" });
   };
 
-  handleError(error) {
+  handleError = (error) => {
     alert(error);
-  }
+  };
 
-  async handleResponse(data) {
+  handleResponse = async (data) => {
     const { email, accessToken: token, expiresIn } = data;
     const expires_at = expiresIn * 1000 + new Date().getTime();
     const user = { email };
     this.setState({ isLoading: true });
-
     try {
-      const response = await Auth.federatedSignIn(
-        "facebook",
-        { token, expires_at },
-        user
-      );
+      const response = await Auth.federatedSignIn("facebook", { token, expires_at }, user);
       this.setState({ isLoading: false });
       this.props.onLogin(response);
     } catch (e) {
       this.setState({ isLoading: false });
       this.handleError(e);
     }
-  }
+  };
 
   render() {
     return (
       <LoaderButton
         block
-        bsSize="large"
-        bsStyle="primary"
+        size="lg"
         className="FacebookButton"
-        text="Login with Facebook"
         onClick={this.handleClick}
         disabled={this.state.isLoading}
+        text="Login with Facebook"
       />
     );
   }

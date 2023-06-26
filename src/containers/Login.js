@@ -10,6 +10,8 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 // import
 // FacebookButton from "../components/FacebookButton";
+// import FacebookLoginButton from "../components/FacebookButton";
+import { FacebookLoginButton } from "react-social-login-buttons";
 
 export default function Login() {
   const history = useHistory();
@@ -40,7 +42,10 @@ export default function Login() {
 //   handleFbLogin = () => {
 // this.props.userHasAuthenticated(true);
 // };
-
+function handleFbLogin() {
+  // Perform the Facebook login action here
+  // You can customize this function based on your requirements
+}
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
@@ -72,7 +77,14 @@ export default function Login() {
         >
           Login
         </LoaderButton>
-        
+        <hr />
+        <a
+          href={`https://www.facebook.com/v12.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent(
+            "http://localhost:3000/login/callback"
+          )}`}
+        >
+          <FacebookLoginButton size="small" onClick={handleFbLogin} />
+        </a>
       </Form>
     </div>
   );

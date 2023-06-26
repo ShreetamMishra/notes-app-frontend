@@ -9,6 +9,10 @@ import "./Signup.css";
 import { Auth } from "aws-amplify";
 // import
 // FacebookButton from "../components/FacebookButton";
+import { FacebookLoginButton } from "react-social-login-buttons";
+// import FacebookLoginButton from "../components/FacebookButton";
+import "../components/FacebookButton.css";
+
 export default function Signup() {
   const [fields, handleFieldChange] = useFormFields({
     email: "",
@@ -67,7 +71,8 @@ export default function Signup() {
   // handleFbLogin = () => {
   //   this.props.userHasAuthenticated(true);
   //   };
-
+  function handleFbLogin() {
+  }
   function renderConfirmationForm() {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
@@ -136,7 +141,12 @@ export default function Signup() {
         >
           Signup
         </LoaderButton>
-        
+        <hr />
+      <div style={{  display: "flex", justifyContent: "center"}}>
+        <a href={`https://www.facebook.com/v12.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent("http://localhost:3000/login/callback")}`}>
+          <FacebookLoginButton size="small" onClick={handleFbLogin} />
+        </a>
+      </div>
       </Form>
     );
   }
