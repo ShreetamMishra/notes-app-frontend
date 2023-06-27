@@ -79,7 +79,7 @@ function handleFbLogin() {
         </LoaderButton>
         <hr />
         <a
-          href={`https://www.facebook.com/v12.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent(
+          href={`https://www.facebook.com/v17.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent(
             "http://localhost:3000/login/callback"
           )}`}
         >
