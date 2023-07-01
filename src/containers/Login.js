@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 // FacebookButton from "../components/FacebookButton";
 // import FacebookLoginButton from "../components/FacebookButton";
 import { FacebookLoginButton } from "react-social-login-buttons";
+import heroImage from "./image/hero1.png";
+
+
 
 export default function Login() {
   const history = useHistory();
@@ -48,8 +51,9 @@ function handleFbLogin() {
 }
   return (
     <div className="Login">
+      <div className="log">
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
+        {/* <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
             autoFocus
@@ -57,23 +61,37 @@ function handleFbLogin() {
             value={fields.email}
             onChange={handleFieldChange}
           />
-        </Form.Group>
+        </Form.Group> */}
+        <Form.Group size="lg" controlId="email">
+        {/* <Form.Label>Email</Form.Label> */}
+        <Form.Control
+           autoFocus
+           type="email"
+           placeholder="Enter your email"
+           value={fields.email}
+           onChange={handleFieldChange}
+          
+        />
+</Form.Group>
         <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
+          {/* <Form.Label>Password</Form.Label> */}
           <Form.Control
             type="password"
+            placeholder="Password"
             value={fields.password}
             onChange={handleFieldChange}
+            
           />
         </Form.Group>
         {/* <FacebookButton onLogin={this.handleFbLogin}/><hr /> */}
-        <Link to="/login/reset">Forgot password?</Link>
+        <Link to="/login/reset" className="custom-link">Forgot password?</Link>
         <LoaderButton
           block
           size="lg"
           type="submit"
           isLoading={isLoading}
           disabled={!validateForm()}
+          className="custom-loader-button"
         >
           Login
         </LoaderButton>
@@ -86,6 +104,20 @@ function handleFbLogin() {
           <FacebookLoginButton size="small" onClick={handleFbLogin} />
         </a>
       </Form>
+      
+      </div>
+      <div className="hero1">
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      
+        </div>
     </div>
   );
 }

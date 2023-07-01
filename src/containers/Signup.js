@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react";//change
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
@@ -12,6 +12,7 @@ import { Auth } from "aws-amplify";
 import { FacebookLoginButton } from "react-social-login-buttons";
 // import FacebookLoginButton from "../components/FacebookButton";
 import "../components/FacebookButton.css";
+import Image from "./image/hero2.png";
 
 export default function Signup() {
   const [fields, handleFieldChange] = useFormFields({
@@ -25,7 +26,15 @@ export default function Signup() {
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
+  // useEffect(() => {
+  //   // Change the body background color here
+  //   document.body.classList.add("hero");
 
+  //   // Clean up the body background color when the component unmounts
+  //   return () => {
+  //     document.body.classList.remove("hero");
+  //   };
+  // }, []);
   function validateForm() {
     return (
       fields.email.length > 0 &&
@@ -71,8 +80,19 @@ export default function Signup() {
   // handleFbLogin = () => {
   //   this.props.userHasAuthenticated(true);
   //   };
-  function handleFbLogin() {
+  async function handleFbLogin() {
+    // event.preventDefault();
+    // setIsLoading(true);
+    // try {
+    //   await Auth.signIn(fields.email, fields.password);
+    //   userHasAuthenticated(true);
+    //   history.push("/");
+    // } catch (e) {
+    //   onError(e);
+    //   setIsLoading(false);
+    // }
   }
+  
   function renderConfirmationForm() {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
@@ -105,27 +125,30 @@ export default function Signup() {
       
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email" size="lg">
-          <Form.Label>Email</Form.Label>
+          {/* <Form.Label>Email</Form.Label> */}
           <Form.Control
             autoFocus
             type="email"
             value={fields.email}
+            placeholder="Enter your email"
             onChange={handleFieldChange}
           />
         </Form.Group>
         <Form.Group controlId="password" size="lg">
-          <Form.Label>Password</Form.Label>
+          {/* <Form.Label>Password</Form.Label> */}
           <Form.Control
             type="password"
             value={fields.password}
+            placeholder="Enter your Password"
             onChange={handleFieldChange}
           />
         </Form.Group>
         <Form.Group controlId="confirmPassword" size="lg">
-          <Form.Label>Confirm Password</Form.Label>
+          {/* <Form.Label>Confirm Password</Form.Label> */}
           <Form.Control
             type="password"
             onChange={handleFieldChange}
+            placeholder="Confirm Password"
             value={fields.confirmPassword}
           />
         </Form.Group>
@@ -143,7 +166,7 @@ export default function Signup() {
         </LoaderButton>
         <hr />
       <div style={{  display: "flex", justifyContent: "center"}}>
-        <a href={`https://www.facebook.com/v17.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent("http://localhost:3000/login/callback")}`}>
+        <a href={`https://www.facebook.com/v17.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent("http://localhost:3000/login/new/notes")}`}>
           <FacebookLoginButton size="small" onClick={handleFbLogin} />
         </a>
       </div>
@@ -153,7 +176,27 @@ export default function Signup() {
 
   return (
     <div className="Signup">
+      
+      {/* {newUser === null ? renderForm() : renderConfirmationForm()} */}
+      <div className="sign">
       {newUser === null ? renderForm() : renderConfirmationForm()}
+      </div>
+      <div className="hero2">
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      <img src={Image} alt="bubble" />
+      </div>
+      
+      
     </div>
+    
+    
   );
 }

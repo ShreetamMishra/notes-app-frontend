@@ -12,6 +12,7 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import ResetPassword from "./containers/ResetPassword";
 import ChangePassword from "./containers/ChangePassword";
 import ChangeEmail from "./containers/ChangeEmail";
+// import FacebookLoginCallback from "./components/FacebookLoginCallback";
 
 export default function Routes() {
   return (
@@ -19,6 +20,7 @@ export default function Routes() {
       <Route exact path="/">
        <Home />
       </Route>
+      {/* <Route exact path="/login/callback" component={FacebookLoginCallback} /> */}
       <UnauthenticatedRoute exact path="/login/reset">
         <ResetPassword />
       </UnauthenticatedRoute>

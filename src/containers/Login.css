@@ -12,4 +12,109 @@
     display: block;
     font-size: 14px;
 }
+.Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: url(image/background.jpg);
+    width: 100%; */
+  }
+
+.log{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     width: 450px;
+    height: 450px; 
+    /* justify-items: center;
+    align-items: center; */
+    background: rgba(49, 142, 209, 0.541);
+    box-shadow: inset 20px 20px 20px rgba(0,0,0,0.05),25px 35px 20px rgba(0,0,0,0.05),25px 30px 30px rgba(0,0,0,0.05),inset -20px -20px 25px rgba(132, 209, 208, 0.541) ;
+    transition: 0.5s;
+    border-radius:52% 48% 33% 67% /38% 45% 55% 62% ;
+    border: black;
+}
+.log:hover{
+    border-radius: 50%;
+}
+.log .drop::before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: white;
+}
+/* body {
+    background: url(image/background.jpg);
+} */
+ .hero1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -70px;
     
+    }  
+    .hero1 img{
+      width: 50px;
+      animation: bubble 7s linear infinite;
+    }
+    @keyframes bubble{
+      0%{
+        transform: translateY(0);
+        opacity: 0;
+      }
+      50%{
+        opacity: 1;
+      }
+      70%{
+        opacity: 1;
+      }
+      100%{
+        transform: translateY(-80vh);
+        opacity: 0;
+      }
+    }
+    .hero1 img:nth-child(1){
+      animation-delay: 2s;
+      width: 80px;
+    }
+    .hero1 img:nth-child(2){
+      animation-delay: 1s;
+    }
+    .hero1 img:nth-child(3){
+      animation-delay: 3s;
+      width: 30px;
+    }
+    .hero1 img:nth-child(4){
+      animation-delay: 4.5s;
+      width: 40px;
+    }
+    .hero1 img:nth-child(5){
+      animation-delay: 0s;
+      
+    }
+    .hero1 img:nth-child(6){
+      animation-delay: 6s;
+      width: 70px;
+    }
+    .hero1 img:nth-child(7){
+      animation-delay: 7s;
+    } 
+    .hero1 img:nth-child(8){
+        animation-delay: 0.2s;
+      } 
+      .hero1 img:nth-child(9){
+        animation-delay: 1s;
+      } 
+    .custom-link {
+        color: rgb(4, 0, 255);
+        /* Add any other desired styles */
+      }
+      .custom-loader-button {
+        background-color: rgb(4, 0, 255);
+        color: white;
+        /* Add any other desired styles */
+      }

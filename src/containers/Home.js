@@ -35,15 +35,16 @@ export default function Home() {
   function renderNotesList(notes) {
     return (
       <>
-        <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
+        {/* <LinkContainer to="/notes/new">
+          <ListGroup.Item action className="py-3 text-nowrap text-truncate custom-note-item">
             <BsPencilSquare size={17} />
-            <span className="ml-2 font-weight-bold">Create a new note</span>
+            <span className="ml-2 font-weight-bold custom-note-text">Create a new note</span>
           </ListGroup.Item>
         </LinkContainer>
         {notes.map(({ noteId, content, createdAt }) => (
           <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-            <ListGroup.Item action>
+            <ListGroup.Item action> 
+            
               <span className="font-weight-bold">
                 {content.trim().split("\n")[0]}
               </span>
@@ -53,7 +54,32 @@ export default function Home() {
               </span>
             </ListGroup.Item>
           </LinkContainer>
-        ))}
+          
+        ))} */}
+        <div className="notes-container">
+  <LinkContainer to="/notes/new">
+    <ListGroup.Item action className="py-3 text-nowrap text-truncate custom-note-item custom-note-new">
+      <BsPencilSquare size={17} />
+      <span className="ml-2 font-weight-bold custom-note-text">Create a new note</span>
+    </ListGroup.Item>
+  </LinkContainer>
+  {notes.map(({ noteId, content, createdAt }) => (
+    <LinkContainer key={noteId} to={`/notes/${noteId}`}>
+      <ListGroup.Item action className="custom-note-item">
+        <span className="font-weight-bold">
+          {content.trim().split("\n")[0]}
+        </span>
+        <br />
+        <span className="text-muted">
+          Created: {new Date(createdAt).toLocaleString()}
+        </span>
+      </ListGroup.Item>
+    </LinkContainer>
+  ))}
+</div>
+
+
+
       </>
     );
   }
@@ -71,6 +97,17 @@ export default function Home() {
             Signup
           </Link>
         </div>
+        <div className="hero">
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        <img src="image/bubble.png" alt="Bubble" />
+        </div>
       </div>
     );
   }
@@ -87,7 +124,10 @@ export default function Home() {
 
   return (
     <div className="Home">
+      
       {isAuthenticated ? renderNotes() : renderLander()}
+      
     </div>
+   
   );
 }

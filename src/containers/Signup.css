@@ -7,11 +7,126 @@
     max-width: 320px;
     }
 }
-body {
+@media (max-width: 768px) {
+  .sign {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+  }
+}
+/* body {
     background-image: linear-gradient(79deg, #7439db, #C66FBC 48%, #F7944f);
     height: 100vh;
     width: 100vw;
     margin: 0;
+  } */
+/* .Signup img{
+  width: 50px;
+}
+  .Signup{
+    width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   bottom: 0;
+  } */
+/* #7439db */
+/* .hero{
+width: 100%;
+height: 100vh;
+background-image: url(image/background.png);
+} */
+.hero2{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: -70px;
+  
+  }  
+  .hero2 img{
+    width: 50px;
+    animation: bubble 7s linear infinite;
+  }
+  @keyframes bubble{
+    0%{
+      transform: translateY(0);
+      opacity: 0;
+    }
+    50%{
+      opacity: 1;
+    }
+    70%{
+      opacity: 1;
+    }
+    100%{
+      transform: translateY(-80vh);
+      opacity: 0;
+    }
+  }
+  .hero2 img:nth-child(1){
+    animation-delay: 2s;
+    width: 80px;
+  }
+  .hero2 img:nth-child(2){
+    animation-delay: 1s;
+  }
+  .hero2 img:nth-child(3){
+    animation-delay: 3s;
+    width: 30px;
+  }
+  .hero2 img:nth-child(4){
+    animation-delay: 4.5s;
+    width: 40px;
+  }
+  .hero2 img:nth-child(5){
+    animation-delay: 3s;
+  }
+  .hero2 img:nth-child(6){
+    animation-delay: 6s;
+    width: 70px;
+  }
+  .hero2 img:nth-child(7){
+    animation-delay: 7s;
+  } 
+  .hero2 img:nth-child(8){
+    animation-delay: 0s;
+    width: 70px;
+  }
+  .hero2 img:nth-child(9){
+    animation-delay: 0.2s;
+    width: 70px;
+  }
+  .sign {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    padding: 20px; /* Add padding here */
+    background: rgba(49, 142, 209, 0.541);
+    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05), 25px 35px 20px rgba(0, 0, 0, 0.05),
+      25px 30px 30px rgba(0, 0, 0, 0.05), inset -20px -20px 25px rgba(132, 209, 208, 0.541);
+    transition: 0.5s;
+    border-radius: 52% 48% 33% 67% / 38% 45% 55% 62%;
+    border: black;
+    /* pointer-events: none; */
+    /* z-index: 2; */
   }
   
-/* #7439db */
+.sign:hover{
+    border-radius: 50%;
+}
+.sign .drop::before{
+    content: '';
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: white;
+}
+.Signup form {
+  margin: 100px auto;
+  }
