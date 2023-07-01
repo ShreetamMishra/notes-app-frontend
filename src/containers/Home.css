@@ -109,7 +109,7 @@
     }
     
     .custom-note-item {
-      flex-basis: 23%; /* Adjust this value to set the width of each container */
+      flex-basis: 23%;
       height: 280px;
       padding: 25px;
       background-color: aqua;
@@ -118,6 +118,9 @@
       margin-bottom: 20px;
       box-shadow: 0px 2px 10px rgba(12, 143, 214, 0.862);
       margin-right: 20px; 
+        overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     /* .custom-note-item:hover{
       border-radius: 10%;
