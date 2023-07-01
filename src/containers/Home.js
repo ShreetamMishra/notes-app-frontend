@@ -36,27 +36,7 @@ export default function Home() {
   function renderNotesList(notes) {
     return (
       <>
-        {/* <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate custom-note-item">
-            <BsPencilSquare size={17} />
-            <span className="ml-2 font-weight-bold custom-note-text">Create a new note</span>
-          </ListGroup.Item>
-        </LinkContainer>
-        {notes.map(({ noteId, content, createdAt }) => (
-          <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-            <ListGroup.Item action> 
-            
-              <span className="font-weight-bold">
-                {content.trim().split("\n")[0]}
-              </span>
-              <br />
-              <span className="text-muted">
-                Created: {new Date(createdAt).toLocaleString()}
-              </span>
-            </ListGroup.Item>
-          </LinkContainer>
-          
-        ))} */}
+       
         <div className="notes-container">
   <LinkContainer to="/notes/new">
     <ListGroup.Item action className="py-3 text-nowrap text-truncate custom-note-item custom-note-new">
@@ -64,7 +44,8 @@ export default function Home() {
       <span className="ml-2 font-weight-bold custom-note-text">Create a new note</span>
     </ListGroup.Item>
   </LinkContainer>
-  {notes.map(({ noteId, content, createdAt }) => (
+  {notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
+    .map(({ noteId, content, createdAt }, index) => (
     <LinkContainer key={noteId} to={`/notes/${noteId}`}>
       <ListGroup.Item action className="custom-note-item">
         <span className="font-weight-bold">
