@@ -7,6 +7,7 @@ import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
+import heroImage from "./image/bubble.png";
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -98,15 +99,15 @@ export default function Home() {
           </Link>
         </div>
         <div className="hero">
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
-        <img src="image/bubble.png" alt="Bubble" />
+        <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
+      <img src={heroImage} alt="bubble" />
         </div>
       </div>
     );
