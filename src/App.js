@@ -99,8 +99,8 @@ function App() {
         <div className="App container py-3">
           <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
             <LinkContainer to="/">
-              <Navbar.Brand className="font-weight-bold text-muted">
-                Scratch
+              <Navbar.Brand style={{ fontWeight: "bold", color: "black" }}className="logo">
+                Notes
               </Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle />
