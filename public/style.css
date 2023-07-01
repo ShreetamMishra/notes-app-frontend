@@ -1,0 +1,203 @@
+/* *{
+    margin: 0;
+    padding: 0;
+    
+} */
+#root{
+
+    width: 100%;
+    height: 100vh;
+    background-image: url(image/background.png);
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    /* overflow: hidden; */
+    overflow: auto;
+}
+/* #root img{
+  width: 50px;
+
+}
+.hero{
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   bottom: 0;
+} */
+  
+  /* #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-image: url("image/bubble.png");
+    
+  }
+  
+  #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-image: url("image/bubble.png");
+    
+  }
+  
+  #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-image: url("image/bubble.png");
+    
+  }
+  
+  #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-image: url("image/bubble.png");
+    
+  }
+  
+  #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background-image: url("image/bubble.png");
+   
+  }
+  
+  #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  width: 50%;
+    background-image: url("image/bubble.png");
+    
+  }
+   */
+  /* #root:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("image/bubble.png");
+    background-size: 50px 50px;
+    
+  }
+   */
+   /* #root::before,
+   #root::after,
+   #root:nth-child(3)::before,
+   #root:nth-child(3)::after,
+   #root:nth-child(5)::before,
+   #root:nth-child(5)::after,
+   #root:nth-child(7)::before {
+     content: "";
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-image: url(image/bubble.png);
+     background-repeat: no-repeat;
+     background-size: 50px;
+   }
+   
+   #root::before {
+     background-position: 10% 10%;
+   }
+   
+   #root::after {
+     background-position: 30% 30%;
+   }
+   
+   #root:nth-child(3)::before {
+     background-position: 50% 50%;
+   }
+   
+   #root:nth-child(3)::after {
+     background-position: 70% 70%;
+   }
+   
+   #root:nth-child(5)::before {
+     background-position: 90% 90%;
+   }
+   
+   #root:nth-child(5)::after {
+     background-position: 20% 20%;
+   }
+   
+   #root:nth-child(7)::before {
+     background-position: 40% 40%;
+   }  */
+   
+   /* #root::before,
+   #root::after,
+   #root > :nth-child(3),
+   #root > :nth-child(4),
+   #root > :nth-child(5),
+   #root > :nth-child(6),
+   #root > :nth-child(7) {
+     content: "";
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-image: url(image/bubble.png);
+     background-repeat: no-repeat;
+     background-size: 50px;
+     animation: bubble 7s linear infinite;
+   }
+   
+   #root::before {
+     background-position: 10% 10%;
+     animation: bubble 7s linear infinite;
+   }
+   
+   #root::after {
+     background-position: 30% 30%;
+   }
+   
+   #root > :nth-child(3) {
+     background-position: 50% 50%;
+   }
+   
+   #root > :nth-child(4) {
+     background-position: 70% 70%;
+   }
+   
+   #root > :nth-child(5) {
+     background-position: 90% 90%;
+   }
+   
+   #root > :nth-child(6) {
+     background-position: 20% 20%;
+   }
+   
+   #root > :nth-child(7) {
+     background-position: 40% 40%;
+   } */
