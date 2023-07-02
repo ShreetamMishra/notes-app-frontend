@@ -9,7 +9,7 @@ import "./Signup.css";
 import { Auth } from "aws-amplify";
 // import
 // FacebookButton from "../components/FacebookButton";
-import { FacebookLoginButton } from "react-social-login-buttons";
+// import { FacebookLoginButton } from "react-social-login-buttons";
 // import FacebookLoginButton from "../components/FacebookButton";
 import "../components/FacebookButton.css";
 import Image from "./image/hero2.png";
@@ -80,7 +80,7 @@ export default function Signup() {
   // handleFbLogin = () => {
   //   this.props.userHasAuthenticated(true);
   //   };
-  async function handleFbLogin() {
+  // async function handleFbLogin() {
     // event.preventDefault();
     // setIsLoading(true);
     // try {
@@ -91,7 +91,7 @@ export default function Signup() {
     //   onError(e);
     //   setIsLoading(false);
     // }
-  }
+  // }
   
   function renderConfirmationForm() {
     return (
@@ -164,12 +164,12 @@ export default function Signup() {
         >
           Signup
         </LoaderButton>
-        <hr />
+        {/* <hr />
       <div style={{  display: "flex", justifyContent: "center"}}>
         <a href={`https://www.facebook.com/v17.0/dialog/oauth?client_id=651928649757855&redirect_uri=${encodeURIComponent("http://localhost:3000/login/new/notes")}`}>
           <FacebookLoginButton size="small" onClick={handleFbLogin} />
         </a>
-      </div>
+      </div> */}
       </Form>
     );
   }
