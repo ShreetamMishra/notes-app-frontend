@@ -16,19 +16,21 @@ export default function Home() {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    async function onLoad() {
-      if (!isAuthenticated) {
-        return;
-      }
-      try {
-        await loadNotes();
-      } catch (e) {
-        onError(e);
-      }
-      setIsLoading(false);
+  async function onLoad() {
+    if (!isAuthenticated) {
+      return;
     }
-    onLoad();
-  }, [isAuthenticated]);
+    try {
+      const notes = await loadNotes();
+      setNotes(notes);
+    } catch (e) {
+      onError(e);
+    }
+    setIsLoading(false);
+  }
+  onLoad();
+}, [isAuthenticated, searchQuery, loadNotes]); 
+
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
