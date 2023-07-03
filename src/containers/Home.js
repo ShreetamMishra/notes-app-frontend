@@ -17,47 +17,43 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
 
-  useEffect(() => {
+ useEffect(() => {
+    async function onLoad() {
+      if (!isAuthenticated) {
+        return;
+      }
+      try {
+        const notes = await loadNotes();
+        setNotes(notes);
+      } catch (e) {
+        onError(e);
+      }
+      setIsLoading(false);
+    }
+    onLoad();
+  }, [isAuthenticated, searchQuery]);
+
   async function loadNotes() {
-    const response = await API.get("notes", "/notes");
-    const notesWithAttachmentURL = await Promise.all(
-      response.map(async (note) => {
-        if (note.attachment) {
-          const attachmentURL = await Storage.vault.get(note.attachment);
-          return { ...note, attachmentURL };
-        }
-        return note;
-      })
-    );
+  const response = await API.get("notes", "/notes");
+  const notesWithAttachmentURL = await Promise.all(
+    response.map(async (note) => {
+      if (note.attachment) {
+        const attachmentURL = await Storage.vault.get(note.attachment);
+        return { ...note, attachmentURL };
+      }
+      return note;
+    })
+  );
 
-    return notesWithAttachmentURL;
-  }
-
-  async function onLoad() {
-    if (!isAuthenticated) {
-      return;
-    }
-    try {
-      const notes = await loadNotes();
-      setNotes(notes);
-    } catch (e) {
-      onError(e);
-    }
-    setIsLoading(false);
-  }
-
-  onLoad();
-}, [isAuthenticated, searchQuery, setNotes, onError]);
-    // const filteredNotes = notesWithAttachmentURL.filter((note) =>
-    //   note.content.toLowerCase().includes(searchQuery.toLowerCase())
-    // );
-    const filteredNotes = notesWithAttachmentURL.filter((note) =>
+  const filteredNotes = notesWithAttachmentURL.filter((note) =>
     note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
-    setFilteredNotes(filteredNotes);
-    return notesWithAttachmentURL;
-  }
+
+  setFilteredNotes(filteredNotes);
+
+  return notesWithAttachmentURL;
+}
+
 
   function renderNotesList(notes) {
     return (
