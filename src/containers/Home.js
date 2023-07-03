@@ -29,7 +29,7 @@ const [setNotes] = useState([]);
     setIsLoading(false);
   }
   onLoad();
-}, [isAuthenticated, searchQuery, loadNotes]); 
+}, [isAuthenticated, searchQuery]); 
 
 
   async function loadNotes() {
