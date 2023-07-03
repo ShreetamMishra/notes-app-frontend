@@ -11,7 +11,7 @@ import heroImage from "./image/bubble.png";
 import { API, Storage } from "aws-amplify";
 
 export default function Home() {
-  const [notes, setNotes] = useState([]);
+  const [setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,7 +31,7 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
-  }, [isAuthenticated, searchQuery]);
+  }, [isAuthenticated,loadNotes, searchQuery]);
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
@@ -84,29 +84,6 @@ export default function Home() {
       </div>
     );
   }
-{/* {notes
-  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  .map(({ noteId, content, createdAt, attachmentURL }) => (
-    <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-      <ListGroup.Item action className="custom-note-item">
-        {attachmentURL && (
-          <a href={attachmentURL} target="_blank" rel="noopener noreferrer">
-            View Attachment
-          </a>
-        )}
-        <span className="font-weight-bold">{content.trim().split("\n")[0]}</span>
-        <br />
-        <span className="text-muted">
-          Created: {new Date(createdAt).toLocaleString()}
-        </span>
-      </ListGroup.Item>
-    </LinkContainer>
-  ))} */}
-
-
-  // </div>
-  //   );
-  // }
 
   function renderLander() {
     return (
