@@ -18,21 +18,6 @@ export default function Home() {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    async function onLoad() {
-      if (!isAuthenticated) {
-        return;
-      }
-      try {
-        const notes = await loadNotes();
-        setNotes(notes);
-      } catch (e) {
-        onError(e);
-      }
-      setIsLoading(false);
-    }
-    onLoad();
- }, [isAuthenticated, loadNotes, searchQuery, setNotes]);
-
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
     const notesWithAttachmentURL = await Promise.all(
@@ -45,6 +30,24 @@ export default function Home() {
       })
     );
 
+    return notesWithAttachmentURL;
+  }
+
+  async function onLoad() {
+    if (!isAuthenticated) {
+      return;
+    }
+    try {
+      const notes = await loadNotes();
+      setNotes(notes);
+    } catch (e) {
+      onError(e);
+    }
+    setIsLoading(false);
+  }
+
+  onLoad();
+}, [isAuthenticated, searchQuery, setNotes, onError]);
     // const filteredNotes = notesWithAttachmentURL.filter((note) =>
     //   note.content.toLowerCase().includes(searchQuery.toLowerCase())
     // );
