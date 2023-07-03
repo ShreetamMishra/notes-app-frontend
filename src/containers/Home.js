@@ -3,7 +3,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
-// import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
@@ -45,13 +44,10 @@ export default function Home() {
       })
     );
 
-    // const filteredNotes = notesWithAttachmentURL.filter((note) =>
-    //   note.content.toLowerCase().includes(searchQuery.toLowerCase())
-    // );
     const filteredNotes = notesWithAttachmentURL.filter((note) =>
-    note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-  
+      note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     setFilteredNotes(filteredNotes);
     return notesWithAttachmentURL;
   }
@@ -66,9 +62,8 @@ export default function Home() {
           </ListGroup.Item>
         </LinkContainer>
 
-        {/* Sort the notes by createdAt in descending order latest one is in the first */}
         {notes
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(({ noteId, content, createdAt, attachmentURL }) => (
             <LinkContainer key={noteId} to={`/notes/${noteId}`}>
               <ListGroup.Item action className="custom-note-item">
@@ -84,35 +79,12 @@ export default function Home() {
       </div>
     );
   }
-{/* {notes
-  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  .map(({ noteId, content, createdAt, attachmentURL }) => (
-    <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-      <ListGroup.Item action className="custom-note-item">
-        {attachmentURL && (
-          <a href={attachmentURL} target="_blank" rel="noopener noreferrer">
-            View Attachment
-          </a>
-        )}
-        <span className="font-weight-bold">{content.trim().split("\n")[0]}</span>
-        <br />
-        <span className="text-muted">
-          Created: {new Date(createdAt).toLocaleString()}
-        </span>
-      </ListGroup.Item>
-    </LinkContainer>
-  ))} */}
-
-
-  // </div>
-  //   );
-  // }
 
   function renderLander() {
     return (
       <div className="lander">
         <h1>Notes</h1>
-        <p className="typewriter" style={{ color: 'black' }}>A simple note taking app</p>
+        <p className="typewriter" style={{ color: 'black' }}>A simple note-taking app</p>
         <div className="pt-3">
           <Link to="/login" className="btn btn-info btn-lg mr-3">
             Login
