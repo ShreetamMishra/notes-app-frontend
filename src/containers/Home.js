@@ -14,7 +14,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
-
+const [setNotes] = useState([]);
   useEffect(() => {
   async function onLoad() {
     if (!isAuthenticated) {
