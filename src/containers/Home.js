@@ -37,21 +37,22 @@ export default function Home() {
     return notesWithAttachmentURL;
   }, [searchQuery]);
 
-  useEffect(() => {
-    async function onLoad() {
-      if (!isAuthenticated) {
-        return;
-      }
-      try {
-        const notes = await loadNotes();
-        setNotes(notes);
-      } catch (e) {
-        onError(e);
-      }
-      setIsLoading(false);
+ useEffect(() => {
+  async function onLoad() {
+    if (!isAuthenticated) {
+      return;
     }
-    onLoad();
-  }, [isAuthenticated, loadNotes]);
+    try {
+      const notes = await loadNotes();
+      setNotes(notes);
+    } catch (e) {
+      onError(e);
+    }
+    setIsLoading(false);
+  }
+  onLoad();
+}, [isAuthenticated, loadNotes, setNotes]);
+
 
   function renderNotesList(notes) {
     return (
