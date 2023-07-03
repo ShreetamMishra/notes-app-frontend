@@ -10,7 +10,6 @@ import heroImage from "./image/bubble.png";
 import { API, Storage } from "aws-amplify";
 
 export default function Home() {
-  const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,15 +21,14 @@ export default function Home() {
         return;
       }
       try {
-        const notes = await loadNotes();
-        setNotes(notes);
+        await loadNotes();
       } catch (e) {
         onError(e);
       }
       setIsLoading(false);
     }
     onLoad();
-  }, [isAuthenticated, searchQuery]);
+  }, [isAuthenticated]);
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
@@ -49,7 +47,6 @@ export default function Home() {
     );
 
     setFilteredNotes(filteredNotes);
-    return notesWithAttachmentURL;
   }
 
   function renderNotesList(notes) {
@@ -84,7 +81,9 @@ export default function Home() {
     return (
       <div className="lander">
         <h1>Notes</h1>
-        <p className="typewriter" style={{ color: 'black' }}>A simple note-taking app</p>
+        <p className="typewriter" style={{ color: "black" }}>
+          A simple note-taking app
+        </p>
         <div className="pt-3">
           <Link to="/login" className="btn btn-info btn-lg mr-3">
             Login
