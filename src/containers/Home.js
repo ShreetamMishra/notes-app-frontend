@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
-// import { API } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
@@ -11,13 +10,34 @@ import heroImage from "./image/bubble.png";
 import { API, Storage } from "aws-amplify";
 
 export default function Home() {
-  const [setNotes] = useState([]);
+  const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
 
- useEffect(() => {
+  const loadNotes = useCallback(async () => {
+    const response = await API.get("notes", "/notes");
+    const notesWithAttachmentURL = await Promise.all(
+      response.map(async (note) => {
+        if (note.attachment) {
+          const attachmentURL = await Storage.vault.get(note.attachment);
+          return { ...note, attachmentURL };
+        }
+        return note;
+      })
+    );
+
+    const filteredNotes = notesWithAttachmentURL.filter((note) =>
+      note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setFilteredNotes(filteredNotes);
+
+    return notesWithAttachmentURL;
+  }, [searchQuery]);
+
+  useEffect(() => {
     async function onLoad() {
       if (!isAuthenticated) {
         return;
@@ -31,29 +51,7 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
-  }, [isAuthenticated, searchQuery]);
-
-  async function loadNotes() {
-  const response = await API.get("notes", "/notes");
-  const notesWithAttachmentURL = await Promise.all(
-    response.map(async (note) => {
-      if (note.attachment) {
-        const attachmentURL = await Storage.vault.get(note.attachment);
-        return { ...note, attachmentURL };
-      }
-      return note;
-    })
-  );
-
-  const filteredNotes = notesWithAttachmentURL.filter((note) =>
-    note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  setFilteredNotes(filteredNotes);
-
-  return notesWithAttachmentURL;
-}
-
+  }, [isAuthenticated, loadNotes]);
 
   function renderNotesList(notes) {
     return (
@@ -67,7 +65,7 @@ export default function Home() {
 
         {/* Sort the notes by createdAt in descending order latest one is in the first */}
         {notes
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map(({ noteId, content, createdAt, attachmentURL }) => (
             <LinkContainer key={noteId} to={`/notes/${noteId}`}>
               <ListGroup.Item action className="custom-note-item">
@@ -88,7 +86,9 @@ export default function Home() {
     return (
       <div className="lander">
         <h1>Notes</h1>
-        <p className="typewriter" style={{ color: 'black' }}>A simple note taking app</p>
+        <p className="typewriter" style={{ color: "black" }}>
+          A simple note taking app
+        </p>
         <div className="pt-3">
           <Link to="/login" className="btn btn-info btn-lg mr-3">
             Login
