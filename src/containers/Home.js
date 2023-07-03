@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
-import { API } from "aws-amplify";
+import { API, Storage } from "aws-amplify";
 import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ export default function Home() {
   const [notes, setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
+  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     async function onLoad() {
       if (!isAuthenticated) {
@@ -27,10 +29,26 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, searchQuery]);
   
   function loadNotes() {
     return API.get("notes", "/notes");
+     const notesWithAttachmentURL = await Promise.all(
+      response.map(async (note) => {
+        if (note.attachment) {
+          const attachmentURL = await Storage.vault.get(note.attachment);
+          return { ...note, attachmentURL };
+        }
+        return note;
+      })
+    );
+    const filteredNotes = notesWithAttachmentURL.filter((note) =>
+    note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  
+    setFilteredNotes(filteredNotes);
+    return notesWithAttachmentURL;
+  
   }
   
   function renderNotesList(notes) {
@@ -67,17 +85,17 @@ export default function Home() {
   {/* Sort the notes by createdAt in descending order latest one is in the first */}
   {notes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
     .map(({ noteId, content, createdAt }, index) => (
-    <LinkContainer key={noteId} to={`/notes/${noteId}`}>
-      <ListGroup.Item action className="custom-note-item">
-        <span className="font-weight-bold">
-          {content.trim().split("\n")[0]}
-        </span>
-        <br />
-        <span className="text-muted">
-          Created: {new Date(createdAt).toLocaleString()}
-        </span>
-      </ListGroup.Item>
-    </LinkContainer>
+   <LinkContainer key={noteId} to={`/notes/${noteId}`}>
+              <ListGroup.Item action className="custom-note-item">
+                {attachmentURL && <img src={attachmentURL} alt={`Note Attachment ${noteId}`} />}
+                <span className="font-weight-bold">{content.trim().split("\n")[0]}</span>
+                <br />
+                <span className="text-muted">
+                  Created: {new Date(createdAt).toLocaleString()}
+                </span>
+              </ListGroup.Item>
+            </LinkContainer>
+          
   ))}
 </div>
 
