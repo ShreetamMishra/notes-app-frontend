@@ -33,10 +33,10 @@ export default function Home() {
   
   function loadNotes() {
     return API.get("notes", "/notes");
-     const notesWithAttachmentURL = await Promise.all(
+     const notesWithAttachmentURL = Promise.all(
       response.map(async (note) => {
         if (note.attachment) {
-          const attachmentURL = await Storage.vault.get(note.attachment);
+          const attachmentURL = Storage.vault.get(note.attachment);
           return { ...note, attachmentURL };
         }
         return note;
