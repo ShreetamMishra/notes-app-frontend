@@ -21,7 +21,6 @@ export default function Home() {
         return;
       }
       try {
-        const notes = await loadNotes();
         await loadNotes();
       } catch (e) {
         onError(e);
@@ -29,7 +28,7 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, loadNotes]);
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
