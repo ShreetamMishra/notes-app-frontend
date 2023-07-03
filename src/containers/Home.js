@@ -31,7 +31,7 @@ export default function Home() {
       setIsLoading(false);
     }
     onLoad();
- , [isAuthenticated, loadNotes, searchQuery, setNotes]);
+ }, [isAuthenticated, loadNotes, searchQuery, setNotes]);
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
