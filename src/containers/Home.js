@@ -14,7 +14,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
-  
+  const [notes, setNotes] = useState([]);
+
   useEffect(() => {
     async function onLoad() {
       if (!isAuthenticated) {
@@ -22,7 +23,7 @@ export default function Home() {
       }
       try {
         const notes = await loadNotes();
-        setFilteredNotes(notes);
+        setNotes(notes);
       } catch (e) {
         onError(e);
       }
@@ -47,7 +48,8 @@ export default function Home() {
       note.content && note.content.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    return filteredNotes;
+    setFilteredNotes(filteredNotes);
+    return notesWithAttachmentURL;
   }
 
   function renderNotesList(notes) {
