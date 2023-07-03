@@ -13,7 +13,7 @@ export default function Home() {
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes, setNotes] = useState([]);
 
   useEffect(() => {
     async function onLoad() {
