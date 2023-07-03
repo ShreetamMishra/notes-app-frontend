@@ -14,23 +14,23 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState([]);
-const [setNotes] = useState([]);
-  useEffect(() => {
-  async function onLoad() {
-    if (!isAuthenticated) {
-      return;
-    }
-    try {
-      const notes = await loadNotes();
-      setNotes(notes);
-    } catch (e) {
-      onError(e);
-    }
-    setIsLoading(false);
-  }
-  onLoad();
-}, [isAuthenticated, searchQuery]); 
+  const [notes, setNotes] = useState([]); // Add setNotes
 
+  useEffect(() => {
+    async function onLoad() {
+      if (!isAuthenticated) {
+        return;
+      }
+      try {
+        const notes = await loadNotes();
+        setNotes(notes);
+      } catch (e) {
+        onError(e);
+      }
+      setIsLoading(false);
+    }
+    onLoad();
+  }, [isAuthenticated, searchQuery]);
 
   async function loadNotes() {
     const response = await API.get("notes", "/notes");
@@ -49,6 +49,7 @@ const [setNotes] = useState([]);
     );
 
     setFilteredNotes(filteredNotes);
+    return notesWithAttachmentURL;
   }
 
   function renderNotesList(notes) {
