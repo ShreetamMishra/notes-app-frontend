@@ -13,7 +13,7 @@ export default function Home() {
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredNotes, setFilteredNotes, setNotes] = useState([]);
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
     async function onLoad() {
@@ -21,6 +21,7 @@ export default function Home() {
         return;
       }
       try {
+        const notes = await loadNotes();
         await loadNotes();
       } catch (e) {
         onError(e);
