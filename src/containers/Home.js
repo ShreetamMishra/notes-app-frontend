@@ -10,7 +10,7 @@ import heroImage from "./image/bubble.png";
 import { API, Storage } from "aws-amplify";
 
 export default function Home() {
-  const [notes, setNotes] = useState([]);
+  const [setNotes] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
